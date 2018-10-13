@@ -1,0 +1,12 @@
+<!--h1>New Comment</h1-->
+
+<%#= render 'form', comment: @comment %>
+
+<%#= link_to 'Back', comments_path %>
+
+<h1>New comment</h1>
+
+<%= render 'form', comment: @comment.post %>
+
+<!-- /posts/:post_id/comments/ -->
+<%= link_to 'Back', post_comments_path(@comment.post)%>
