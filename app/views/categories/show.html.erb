@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+
+<!--p>
+  <strong>Name:</strong>
+  <%#= @category.comments %>
+</p-->
+
+<% @category_comments.each do |comment| %>
+	<p><%= comment.commenter %></p>
+<% end %>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>

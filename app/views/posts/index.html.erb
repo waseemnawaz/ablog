@@ -13,11 +13,23 @@
   </thead>
 
   <tbody>
+
+    <br>
+    <hr>
+    <br>
+    <% Category.all.each do |cat| %>
+      <%= link_to cat.name, posts_path(category: cat.name) %>
+    <% end %>
+    <br>
+    <hr>
+    <br>
+
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.name %></td>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
+        <td><%= post.category_id %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>

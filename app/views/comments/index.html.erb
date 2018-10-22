@@ -13,11 +13,21 @@
   </thead>
 
   <tbody>
+    <br>
+    <hr>
+    <br>
+    <% Category.all.each do |cat| %>
+      <%= link_to cat.name, post_comments_path(category: cat.name) %>
+    <% end %>
+    <br>
+    <hr>
+    <br>
+
     <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.commenter %></td>
         <td><%= comment.body %></td>
-        <!--td><%#= comment.post %></td-->
+        <td><%= comment.category_id %></td>
         <!--td><%#= link_to 'Show', comment %></td-->
         <td><%= link_to 'Show', [comment.post, comment] %></td>
         <!--td><%#= link_to 'Edit', edit_comment_path(comment) %></td-->

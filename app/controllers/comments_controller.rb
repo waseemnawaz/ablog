@@ -10,8 +10,14 @@ class CommentsController < ApplicationController
     #@comments = Comment.all
     #1st you retrieve the post thanks to params[:post_id]
     #2nd you get all the comments of this post
-    post = Post.find(params[:post_id])
-    @comments = post.comments
+    if params[:category].blank?
+      post = Post.find(params[:post_id])
+      @comments = post.comments
+    else
+      @category = Category.find_by_name(params[:category])
+      post = Post.find(params[:post_id])
+      @comments = post.comments.where(category: @category)
+    end
   end
 
   # GET /comments/1
@@ -113,6 +119,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:commenter, :body, :post_id)
+      params.require(:comment).permit(:commenter, :body, :post_id, :category_id)
     end
 end
